@@ -48,11 +48,21 @@ elif disease == "Heart Disease":
 
 elif disease == "Parkinson's Disease":
     st.subheader("Parkinson's Disease Prediction")
+    
     fo = st.number_input("MDVP:Fo(Hz)")
     fhi = st.number_input("MDVP:Fhi(Hz)")
     flo = st.number_input("MDVP:Flo(Hz)")
-    jitter = st.number_input("MDVP:Jitter(%)")
+    jitter_perc = st.number_input("MDVP:Jitter(%)")
+    jitter_abs = st.number_input("MDVP:Jitter(Abs)")
+    rap = st.number_input("MDVP:RAP")
+    ppq = st.number_input("MDVP:PPQ")
+    ddp = st.number_input("Jitter:DDP")
     shimmer = st.number_input("MDVP:Shimmer")
+    shimmer_db = st.number_input("MDVP:Shimmer(dB)")
+    apq3 = st.number_input("Shimmer:APQ3")
+    apq5 = st.number_input("Shimmer:APQ5")
+    apq = st.number_input("MDVP:APQ")
+    dda = st.number_input("Shimmer:DDA")
     nhr = st.number_input("NHR")
     hnr = st.number_input("HNR")
     rpde = st.number_input("RPDE")
@@ -63,6 +73,6 @@ elif disease == "Parkinson's Disease":
     ppe = st.number_input("PPE")
 
     if st.button("Predict"):
-        input_data = np.array([[fo, fhi, flo, jitter, shimmer, nhr, hnr, rpde, dfa, spread1, spread2, d2, ppe]])
+        input_data = np.array([[fo, fhi, flo, jitter_perc, jitter_abs, rap, ppq, ddp, shimmer, shimmer_db, apq3, apq5, apq, dda, nhr, hnr, rpde, dfa, spread1, spread2, d2, ppe]])
         prediction = parkinsons_model.predict(input_data)
         st.success("Parkinson's Disease Detected" if prediction[0] == 1 else "No Parkinson's Disease Detected")
